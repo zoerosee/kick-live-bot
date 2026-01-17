@@ -3,13 +3,15 @@ import requests
 from discord import app_commands
 from discord.ext import commands
 import os
+from flask import Flask
+from threading import Thread
 
-TOKEN = os.environ['TOKEN']  # Read token from environment
+TOKEN = "MTQ2MjE4NjY2NjIwOTg0MTE4Mg.GDaAb7.eyObdkQh3wNHuKrDvPmulEKaRtga7QO17iVeJs"  # Replace with your actual Discord token
 
 KICK_STREAMERS = [
     "xqc",
     "destiny",
-    # Add more here
+    # add more here
 ]
 
 intents = discord.Intents.default()
@@ -35,22 +37,17 @@ async def live(interaction: discord.Interaction):
 
     if live_now:
         msg = "**🟢 Live on Kick:**\n" + "\n".join(f"• {s}" for s in live_now)
-
-    from flask import Flask
-from threading import Thread
-
-app = Flask('')
-
-@app.route('/')
-def home():
-    return "Bot is running!"
-
-def run():
-    app.run(host='0.0.0.0', port=8080)
-
-Thread(target=run).start()
     else:
         msg = "🔴 No tracked streamers are live right now."
     await interaction.response.send_message(msg)
+
+# Tiny web server to keep the bot awake
+app = Flask('')
+@app.route('/')
+def home():
+    return "Bot is running!"
+def run():
+    app.run(host='0.0.0.0', port=8080)
+Thread(target=run).start()
 
 bot.run(TOKEN)
