@@ -36,6 +36,7 @@ async def live(interaction: discord.Interaction):
 
     if live_now:
         msg = "**🟢 Live on Kick:**\n" + "\n".join(f"• {s}" for s in live_now)
+        
     else:
         msg = "🔴 No tracked streamers are live right now."
     await interaction.response.send_message(msg)
