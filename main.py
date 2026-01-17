@@ -6,7 +6,7 @@ import os
 from flask import Flask
 from threading import Thread
 
-TOKEN = "MTQ2MjE4NjY2NjIwOTg0MTE4Mg.GDaAb7.eyObdkQh3wNHuKrDvPmulEKaRtga7QO17iVeJs"  # Replace with your actual Discord token
+TOKEN = "MTQ2MjE4NjY2NjIwOTg0MTE4Mg.GIHY3E.CUDK0iSFdD0jBwNRRWSa4crg12JRb7W-JtqfXE"  # Replace with your actual Discord token
 
 KICK_STREAMERS = [
     "xqc",
