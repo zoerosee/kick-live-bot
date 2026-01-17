@@ -4,13 +4,12 @@ from discord import app_commands
 from discord.ext import commands
 import os
 
-TOKEN = os.environ['TOKEN']  # Token will be set in Railway
+TOKEN = os.environ['TOKEN']  # Read token from environment
 
-# List of Kick streamers
 KICK_STREAMERS = [
     "xqc",
     "destiny",
-    # add more here
+    # Add more here
 ]
 
 intents = discord.Intents.default()
@@ -36,7 +35,6 @@ async def live(interaction: discord.Interaction):
 
     if live_now:
         msg = "**🟢 Live on Kick:**\n" + "\n".join(f"• {s}" for s in live_now)
-        
     else:
         msg = "🔴 No tracked streamers are live right now."
     await interaction.response.send_message(msg)
